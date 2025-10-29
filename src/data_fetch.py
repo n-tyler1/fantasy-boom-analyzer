@@ -4,8 +4,6 @@ from src.fantasy_utils import compute_fantasy_points
 SEASON = '2025-26'
 
 def get_top_players_by_fppg(season=SEASON, top_n=50):
-    print(f"Fetching player stats for {season}...")
-
     df = leaguedashplayerstats.LeagueDashPlayerStats(
         season=season,
         season_type_all_star='Regular Season',
@@ -19,6 +17,5 @@ def get_top_players_by_fppg(season=SEASON, top_n=50):
         'PLAYER_ID', 'PLAYER_NAME', 'TEAM_ABBREVIATION',
         'GP', 'MIN', 'PTS', 'REB', 'AST', 'STL', 'BLK', 'FANTASY_PTS'
     ]]
-
-    print(f"Retrieved top {top_n} fantasy players")
+    
     return df

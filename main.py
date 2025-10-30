@@ -6,10 +6,10 @@ from src.game_logs import analyze_boom_games
 def main():
     print("Starting NBA Fantasy Boom Score Analysis...\n")
 
-    # Step 1 → Analyze boom games for top 50 players by FPPG
+    # Step 1: Analyze boom games for top 50 players by FPPG
     df_boom = analyze_boom_games()
 
-    # Step 2 → Save summary with timestamp
+    # Step 2: Save summary with timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_path = f"data/player_boom_summary_{timestamp}.csv"
     df_boom.to_csv(output_path, index=False)

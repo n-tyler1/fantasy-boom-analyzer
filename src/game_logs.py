@@ -27,22 +27,32 @@ def analyze_boom_games(thresholds=BOOM_THRESHOLDS):
         total_games = len(logs)
         max_score = logs['FANTASY_PTS'].max()
 
-        boom_counts = {}
-        for t in thresholds:
-            boom_counts[f'Over_{t}'] = (logs['FANTASY_PTS'] >= t).sum()
+        # Exclusive bucket counts
+        count_50_59 = ((logs['FANTASY_PTS'] >= 50) & (logs['FANTASY_PTS'] < 60)).sum()
+        count_60_69 = ((logs['FANTASY_PTS'] >= 60) & (logs['FANTASY_PTS'] < 70)).sum()
+        count_70_79 = ((logs['FANTASY_PTS'] >= 70) & (logs['FANTASY_PTS'] < 80)).sum()
+        count_80_plus = (logs['FANTASY_PTS'] >= 80).sum()
+
+        # Weighted score
+        weighted_boom_score = (
+            count_50_59 * 1 +
+            count_60_69 * 2 +
+            count_70_79 * 3 +
+            count_80_plus * 4
+        )
 
         boom_summary.append({
             'PLAYER_NAME': player['PLAYER_NAME'],
             'TEAM': player['TEAM_ABBREVIATION'],
             'GAMES': total_games,
             'MAX_SCORE': max_score,
-            **boom_counts
+            '50-59': count_50_59,
+            '60-69': count_60_69,
+            '70-79': count_70_79,
+            '80+': count_80_plus,
+            'WEIGHTED_BOOM': weighted_boom_score
         })
 
     df_summary = pd.DataFrame(boom_summary)
-    df_summary = df_summary.sort_values('MAX_SCORE', ascending=False).reset_index(drop=True)
+    df_summary = df_summary.sort_values('WEIGHTED_BOOM', ascending=False).reset_index(drop=True)
     return df_summary
-
-if __name__ == "__main__":
-    df_boom = analyze_boom_games()
-    print(df_boom.head(20))

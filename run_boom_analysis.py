@@ -1,7 +1,7 @@
 import sys
 import os
 from datetime import datetime
-from src.game_logs import analyze_boom_games
+from src.boom_analysis import analyze_boom_games
 
 def main():
     print("Starting NBA Fantasy Boom Score Analysis...\n")
@@ -15,7 +15,7 @@ def main():
     df_boom.to_csv(output_path, index=False)
     print(f"\nAnalysis complete. Saved to {output_path}\n")
 
-
+    # Step 3: Display top-performing players and their boom stats
     print("Top 20 Players by Max Fantasy Score (with Boom Analysis):\n")
     print(df_boom.head(20))
 

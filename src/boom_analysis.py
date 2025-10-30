@@ -1,8 +1,8 @@
 import pandas as pd
 import time
 from nba_api.stats.endpoints import playergamelog
-from src.data_fetch import get_top_players_by_fppg
-from src.fantasy_utils import compute_fantasy_points
+from src.palyer_stats import get_top_players_by_fppg
+from src.fantasy_points import compute_fantasy_points
 
 SEASON = '2025-26'
 BOOM_THRESHOLDS = [50, 60, 70, 80, 90]

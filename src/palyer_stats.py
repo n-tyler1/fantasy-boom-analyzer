@@ -1,5 +1,5 @@
 from nba_api.stats.endpoints import leaguedashplayerstats
-from src.fantasy_utils import compute_fantasy_points
+from src.fantasy_points import compute_fantasy_points
 
 SEASON = '2025-26'
 

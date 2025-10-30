@@ -1,11 +1,11 @@
 import pandas as pd
 import time
 from nba_api.stats.endpoints import playergamelog
-from src.palyer_stats import get_top_players_by_fppg
+from src.player_stats import get_top_players_by_fppg
 from src.fantasy_points import compute_fantasy_points
 
 SEASON = '2025-26'
-BOOM_THRESHOLDS = [50, 60, 70, 80, 90]
+BOOM_THRESHOLDS = [50, 60, 70, 80]
 
 def get_player_game_logs(player_id, season=SEASON):
     time.sleep(0.6)

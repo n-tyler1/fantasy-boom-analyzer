@@ -2,6 +2,7 @@ import sys
 import os
 from datetime import datetime
 from src.boom_analysis import analyze_boom_games
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def main():
     print("=== NBA Fantasy Boom Score Analysis ===")

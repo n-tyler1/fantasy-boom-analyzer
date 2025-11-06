@@ -25,7 +25,7 @@ def analyze_boom_games(thresholds=BOOM_THRESHOLDS):
         logs = compute_fantasy_points(logs)
 
         total_games = len(logs)
-        max_score = logs['FANTASY_PTS'].max()
+        top_3_scores = logs['FANTASY_PTS'].nlargest(3).tolist()
 
         # Exclusive bucket counts
         count_50_59 = ((logs['FANTASY_PTS'] >= 50) & (logs['FANTASY_PTS'] < 60)).sum()
@@ -45,7 +45,7 @@ def analyze_boom_games(thresholds=BOOM_THRESHOLDS):
             'PLAYER_NAME': player['PLAYER_NAME'],
             'TEAM': player['TEAM_ABBREVIATION'],
             'GAMES': total_games,
-            'MAX_SCORE': max_score,
+            'TOP_SCORES': top_3_scores,
             '50-59': count_50_59,
             '60-69': count_60_69,
             '70-79': count_70_79,

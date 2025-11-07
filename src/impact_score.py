@@ -1,6 +1,6 @@
 import pandas as pd
 
-FANTASY_SCORING = {
+IMPACT_SCORING = {
     'PTS': 1,
     'REB': 1,
     'AST': 2,
@@ -8,9 +8,9 @@ FANTASY_SCORING = {
     'BLK': 3
 }
 
-def compute_fantasy_points(df, scoring=FANTASY_SCORING):
+def compute_impact_score(df, scoring=IMPACT_SCORING):
     df = df.copy()
-    df['FANTASY_PTS'] = (
+    df['IMPACT_SCORE'] = (
         df['PTS'] * scoring['PTS'] +
         df['REB'] * scoring['REB'] +
         df['AST'] * scoring['AST'] +
